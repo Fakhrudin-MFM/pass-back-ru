@@ -1,0 +1,564 @@
+{
+  "classes": {
+    "pass": {
+      "uml": {
+        "offset": {
+          "top": 22.020835876464844,
+          "left": 237
+        }
+      }
+    },
+    "target": {
+      "uml": {
+        "offset": {
+          "top": 289.00000762939453,
+          "left": 481
+        }
+      }
+    }
+  },
+  "workflows": {
+    "pass": {
+      "states": {
+        "checked": {
+          "uml": {
+            "offset": {
+              "top": 123.02083587646484,
+              "left": 24
+            }
+          }
+        },
+        "refused": {
+          "uml": {
+            "offset": {
+              "top": 133.97916412353516,
+              "left": 235
+            }
+          }
+        }
+      },
+      "transitions": {}
+    }
+  },
+  "interfaces": [],
+  "changeLogs": [
+    {
+      "action": "create",
+      "type": "class",
+      "name": "applicant",
+      "date": "2020-04-19T23:14:28.392Z"
+    },
+    {
+      "action": "create",
+      "type": "class attribute",
+      "name": "guid.applicant",
+      "date": "2020-04-19T23:14:28.411Z"
+    },
+    {
+      "action": "create",
+      "type": "class attribute",
+      "name": "fio.applicant",
+      "date": "2020-04-19T23:14:49.176Z"
+    },
+    {
+      "action": "create",
+      "type": "class attribute",
+      "name": "burthDate.applicant",
+      "date": "2020-04-19T23:15:15.187Z"
+    },
+    {
+      "action": "create",
+      "type": "class attribute",
+      "name": "type.applicant",
+      "date": "2020-04-19T23:15:49.974Z"
+    },
+    {
+      "action": "update",
+      "type": "class attribute",
+      "name": "type.applicant",
+      "oldValue": {
+        "selectionProvider": null,
+        "type": null
+      },
+      "newValue": {
+        "selectionProvider": {
+          "type": "SIMPLE",
+          "list": [
+            {
+              "key": "birthCertificate",
+              "value": "Свидетельство о рождении"
+            },
+            {
+              "key": "passport",
+              "value": "Паспорт"
+            }
+          ],
+          "matrix": [],
+          "parameters": [],
+          "hq": ""
+        },
+        "type": null
+      },
+      "date": "2020-04-19T23:20:12.795Z"
+    },
+    {
+      "action": "create",
+      "type": "class attribute",
+      "name": "docSer.applicant",
+      "date": "2020-04-19T23:21:23.342Z"
+    },
+    {
+      "action": "create",
+      "type": "class attribute",
+      "name": "docNum.applicant",
+      "date": "2020-04-19T23:21:40.507Z"
+    },
+    {
+      "action": "update",
+      "type": "class attribute",
+      "name": "docNum.applicant",
+      "oldValue": {
+        "nullable": false,
+        "type": null
+      },
+      "newValue": {
+        "nullable": true,
+        "type": null
+      },
+      "date": "2020-04-19T23:21:48.642Z"
+    },
+    {
+      "action": "create",
+      "type": "class attribute",
+      "name": "docDate.applicant",
+      "date": "2020-04-19T23:22:20.298Z"
+    },
+    {
+      "action": "create",
+      "type": "class attribute",
+      "name": "passes.applicant",
+      "date": "2020-04-19T23:22:46.088Z"
+    },
+    {
+      "action": "create",
+      "type": "class",
+      "name": "pass",
+      "date": "2020-04-19T23:23:14.216Z"
+    },
+    {
+      "action": "create",
+      "type": "class attribute",
+      "name": "guid.pass",
+      "date": "2020-04-19T23:23:14.238Z"
+    },
+    {
+      "action": "update",
+      "type": "class",
+      "name": "applicant",
+      "oldValue": {
+        "semantic": "",
+        "key": [
+          null
+        ]
+      },
+      "newValue": {
+        "semantic": "|fio| |birthDate|",
+        "key": [
+          null
+        ]
+      },
+      "date": "2020-04-19T23:24:29.544Z"
+    },
+    {
+      "action": "update",
+      "type": "class attribute",
+      "name": "birthDate.applicant",
+      "oldValue": {
+        "name": "burthDate",
+        "type": null
+      },
+      "newValue": {
+        "name": "birthDate",
+        "type": null
+      },
+      "date": "2020-04-19T23:24:36.180Z"
+    },
+    {
+      "action": "update",
+      "type": "class",
+      "name": "applicant",
+      "oldValue": {
+        "semantic": "|fio| |birthDate|",
+        "key": [
+          null
+        ]
+      },
+      "newValue": {
+        "semantic": "fio| |birthDate",
+        "key": [
+          null
+        ]
+      },
+      "date": "2020-04-19T23:24:47.322Z"
+    },
+    {
+      "action": "create",
+      "type": "class attribute",
+      "name": "applicant.pass",
+      "date": "2020-04-19T23:25:29.714Z"
+    },
+    {
+      "action": "create",
+      "type": "class attribute",
+      "name": "doc.pass",
+      "date": "2020-04-19T23:26:02.777Z"
+    },
+    {
+      "action": "update",
+      "type": "class attribute",
+      "name": "doc.pass",
+      "oldValue": {
+        "formula": null,
+        "type": null
+      },
+      "newValue": {
+        "formula": {
+          "concat": [
+            "$applicant.docSer",
+            " № ",
+            "$applicant.docNum",
+            " Дата выдачи: ",
+            "$applicant.docDate"
+          ]
+        },
+        "type": null
+      },
+      "date": "2020-04-19T23:31:17.924Z"
+    },
+    {
+      "action": "create",
+      "type": "class attribute",
+      "name": "validStart.pass",
+      "date": "2020-04-19T23:31:47.497Z"
+    },
+    {
+      "action": "create",
+      "type": "class attribute",
+      "name": "validEnd.pass",
+      "date": "2020-04-19T23:32:09.121Z"
+    },
+    {
+      "action": "update",
+      "type": "class attribute",
+      "name": "passes.applicant",
+      "oldValue": {
+        "itemsClass": "",
+        "type": null
+      },
+      "newValue": {
+        "itemsClass": "pass",
+        "type": null
+      },
+      "date": "2020-04-19T23:32:24.313Z"
+    },
+    {
+      "action": "update",
+      "type": "class attribute",
+      "name": "passes.applicant",
+      "oldValue": {
+        "backRef": "",
+        "type": null
+      },
+      "newValue": {
+        "backRef": "applicant",
+        "type": null
+      },
+      "date": "2020-04-19T23:32:43.964Z"
+    },
+    {
+      "action": "create",
+      "type": "class attribute",
+      "name": "target.pass",
+      "date": "2020-04-19T23:33:06.756Z"
+    },
+    {
+      "action": "create",
+      "type": "class",
+      "name": "target",
+      "date": "2020-04-19T23:33:20.575Z"
+    },
+    {
+      "action": "create",
+      "type": "class attribute",
+      "name": "guid.target",
+      "date": "2020-04-19T23:33:20.598Z"
+    },
+    {
+      "action": "update",
+      "type": "class",
+      "name": "target",
+      "oldValue": {
+        "semantic": "",
+        "key": [
+          null
+        ]
+      },
+      "newValue": {
+        "semantic": "name",
+        "key": [
+          null
+        ]
+      },
+      "date": "2020-04-19T23:33:28.071Z"
+    },
+    {
+      "action": "update",
+      "type": "class attribute",
+      "name": "target.pass",
+      "oldValue": {
+        "refClass": "",
+        "type": null
+      },
+      "newValue": {
+        "refClass": "target",
+        "type": null
+      },
+      "date": "2020-04-19T23:33:36.624Z"
+    },
+    {
+      "action": "update",
+      "type": "class attribute",
+      "name": "code.target",
+      "oldValue": {
+        "name": "guid",
+        "caption": "ID",
+        "type": 12,
+        "readonly": true,
+        "autoassigned": true,
+        "nullable": true
+      },
+      "newValue": {
+        "name": "code",
+        "caption": "Код",
+        "type": 0,
+        "readonly": false,
+        "autoassigned": false,
+        "nullable": false
+      },
+      "date": "2020-04-19T23:34:26.368Z"
+    },
+    {
+      "action": "create",
+      "type": "class attribute",
+      "name": "name.target",
+      "date": "2020-04-19T23:34:48.227Z"
+    },
+    {
+      "action": "create",
+      "type": "workflow",
+      "name": "pass",
+      "date": "2020-04-19T23:35:32.160Z"
+    },
+    {
+      "action": "create",
+      "type": "workflow state",
+      "name": "create",
+      "date": "2020-04-19T23:35:50.475Z"
+    },
+    {
+      "action": "create",
+      "type": "workflow state",
+      "name": "checked",
+      "date": "2020-04-19T23:36:08.418Z"
+    },
+    {
+      "action": "create",
+      "type": "workflow state",
+      "name": "refused",
+      "date": "2020-04-19T23:36:21.850Z"
+    },
+    {
+      "action": "update",
+      "type": "workflow state",
+      "name": "created",
+      "oldValue": {
+        "name": "create"
+      },
+      "newValue": {
+        "name": "created"
+      },
+      "date": "2020-04-19T23:36:29.864Z"
+    },
+    {
+      "action": "create",
+      "type": "workflow transition",
+      "name": "createInChecked",
+      "date": "2020-04-19T23:37:16.034Z"
+    },
+    {
+      "action": "create",
+      "type": "workflow transition",
+      "name": "checkedInRefused",
+      "date": "2020-04-19T23:37:53.376Z"
+    },
+    {
+      "action": "update",
+      "type": "workflow transition",
+      "name": "createInChecked",
+      "oldValue": {
+        "conditions": []
+      },
+      "newValue": {
+        "conditions": [
+          {
+            "property": "state",
+            "operation": 0,
+            "value": [
+              "created"
+            ],
+            "nestedConditions": []
+          }
+        ]
+      },
+      "date": "2020-04-19T23:39:52.602Z"
+    },
+    {
+      "action": "update",
+      "type": "workflow transition",
+      "name": "checkedInRefused",
+      "oldValue": {
+        "conditions": []
+      },
+      "newValue": {
+        "conditions": [
+          {
+            "property": "state",
+            "operation": 0,
+            "value": [
+              "checked"
+            ],
+            "nestedConditions": []
+          }
+        ]
+      },
+      "date": "2020-04-19T23:40:11.184Z"
+    },
+    {
+      "action": "update",
+      "type": "workflow transition",
+      "name": "createInChecked",
+      "oldValue": {
+        "assignments": []
+      },
+      "newValue": {
+        "assignments": [
+          {
+            "key": "state",
+            "value": "checked"
+          }
+        ]
+      },
+      "date": "2020-04-19T23:41:06.686Z"
+    },
+    {
+      "action": "update",
+      "type": "workflow transition",
+      "name": "checkedInRefused",
+      "oldValue": {
+        "assignments": []
+      },
+      "newValue": {
+        "assignments": [
+          {
+            "key": "state",
+            "value": "refused"
+          }
+        ]
+      },
+      "date": "2020-04-19T23:41:19.921Z"
+    },
+    {
+      "action": "create",
+      "type": "class attribute",
+      "name": "state.pass",
+      "date": "2020-04-19T23:41:50.643Z"
+    },
+    {
+      "action": "update",
+      "type": "class attribute",
+      "name": "state.pass",
+      "oldValue": {
+        "selectionProvider": null,
+        "type": null
+      },
+      "newValue": {
+        "selectionProvider": {
+          "type": "SIMPLE",
+          "list": [
+            {
+              "key": "registred",
+              "value": "Зарегистрирован"
+            },
+            {
+              "key": "checked",
+              "value": "Проверен"
+            },
+            {
+              "key": "refused",
+              "value": "Отклонен"
+            }
+          ],
+          "matrix": [],
+          "parameters": [],
+          "hq": ""
+        },
+        "type": null
+      },
+      "date": "2020-04-19T23:43:13.332Z"
+    },
+    {
+      "action": "update",
+      "type": "workflow state",
+      "name": "registred",
+      "oldValue": {
+        "name": "created",
+        "caption": "Создан"
+      },
+      "newValue": {
+        "name": "registred",
+        "caption": "Зарегистрирован"
+      },
+      "date": "2020-04-19T23:43:33.162Z"
+    },
+    {
+      "action": "update",
+      "type": "workflow transition",
+      "name": "createInChecked",
+      "oldValue": {
+        "conditions": [
+          {
+            "property": "state",
+            "operation": 0,
+            "value": [
+              "created"
+            ],
+            "nestedConditions": []
+          }
+        ]
+      },
+      "newValue": {
+        "conditions": [
+          {
+            "property": "state",
+            "operation": 0,
+            "value": [
+              "registred"
+            ],
+            "nestedConditions": []
+          }
+        ]
+      },
+      "date": "2020-04-19T23:43:51.174Z"
+    }
+  ]
+}

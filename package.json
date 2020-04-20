@@ -1,0 +1,28 @@
+{
+  "name": "pass-back-ru",
+  "description": "Бэк-офис для системы пропусков",
+  "version": "1.0.0",
+  "homepage": "https://github.com/iondv/pass-back-ru/",
+  "bugs": {
+    "url": "https://github.com/iondv/pass-back-ru/issues"
+  },
+  "engines": {
+    "ion": "4.0.0"
+  },
+  "license": "Apache License 2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iondv/pass-back-ru.git"
+  },
+  "ionModulesDependencies": {
+	"rest": "3.0.0"
+    "portal": "2.0.0"    
+    "ionadmin": "3.1.0"
+  },
+  "ionMetaDependencies": {},
+  "changeState": {
+    "major": true,
+    "minor": true,
+    "patch": true
+  }
+}

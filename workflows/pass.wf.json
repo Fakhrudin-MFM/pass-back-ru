@@ -1,0 +1,107 @@
+{
+  "name": "pass",
+  "caption": "Pass",
+  "wfClass": "pass",
+  "startState": "registred",
+  "states": [
+    {
+      "name": "registred",
+      "caption": "Зарегистрирован",
+      "maxPeriod": "",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": []
+    },
+    {
+      "name": "checked",
+      "caption": "Проверен",
+      "maxPeriod": "",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": [],
+      "options": {
+        "uml": {
+          "offset": {
+            "top": 123.02083587646484,
+            "left": 24
+          }
+        }
+      }
+    },
+    {
+      "name": "refused",
+      "caption": "Отклонен",
+      "maxPeriod": "",
+      "conditions": [],
+      "itemPermissions": [],
+      "propertyPermissions": [],
+      "selectionProviders": [],
+      "options": {
+        "uml": {
+          "offset": {
+            "top": 133.97916412353516,
+            "left": 235
+          }
+        }
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "startState": "registred",
+      "finishState": "checked",
+      "name": "createInChecked",
+      "caption": "Проверить",
+      "signBefore": false,
+      "signAfter": false,
+      "confirm": false,
+      "confirmMessage": "",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "checked"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "registred"
+          ],
+          "nestedConditions": []
+        }
+      ],
+      "roles": []
+    },
+    {
+      "startState": "checked",
+      "finishState": "refused",
+      "name": "checkedInRefused",
+      "caption": "Отклонить",
+      "signBefore": false,
+      "signAfter": false,
+      "confirm": false,
+      "confirmMessage": "",
+      "assignments": [
+        {
+          "key": "state",
+          "value": "refused"
+        }
+      ],
+      "conditions": [
+        {
+          "property": "state",
+          "operation": 0,
+          "value": [
+            "checked"
+          ],
+          "nestedConditions": []
+        }
+      ],
+      "roles": []
+    }
+  ]
+}
