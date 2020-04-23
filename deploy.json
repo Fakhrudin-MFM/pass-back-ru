@@ -9,7 +9,31 @@
     "lang": "ru",
     "moduleTitles": {},
     "explicitTopMenu": [],
-    "plugins": {},
+    "plugins": {
+      "actualAclProvider": {
+        "module": "core/impl/access/DsAcl",
+        "initMethod": "init",
+        "initLevel": 1,
+        "options": {
+          "dataSource": "ion://Db"
+        }
+      },
+      "aclProvider": {
+        "module": "core/impl/access/aclMetaMap",
+        "options": {
+          "dataRepo": "ion://dataRepo",
+          "acl": "ion://actualAclProvider",
+          "accessManager": "ion://roleAccessManager",
+          "calculator": "ion://calculator",
+          "map": {
+            "applicant@pass-back-ru": {
+              "isEntry": true,
+              "sidAttribute": "user"
+            }
+          }
+        }
+      }
+    },
     "jobs": {}
   },
   "modules": {
@@ -17,6 +41,23 @@
       "globals": null,
       "import": null,
       "statics": null
+    },
+    "rest": {
+      "globals": {
+        "authMode": {
+          "main": "token"
+        },
+        "di": {
+          "main": {
+            "module": "applications/pass-back-ru/rest/mainService",
+            "options": {
+              "auth": "ion://auth",
+              "ws": "ion://wsAuth",
+              "dataRepo": "ion://dataRepo"
+            }
+          }
+        }
+      }
     },
     "registry": {
       "import": null,
