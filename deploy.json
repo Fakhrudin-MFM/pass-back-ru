@@ -32,6 +32,68 @@
             }
           }
         }
+      },
+      "customProfile": {
+        "module": "lib/plugins/customProfile",
+        "options": {
+          "metaRepo": "ion://metaRepo",
+          "dataRepo": "ion://dataRepo",
+          "fields": {
+            "fio": {
+              "caption": "ФИО",
+              "required": false,
+              "readonly": true
+            },
+            "birthDate": {
+              "caption": "Дата рождения",
+              "required": false,
+              "readonly": true,
+              "type": 120
+            },
+            "type": {
+              "caption": "Тип документа",
+              "required": false,
+              "readonly": true
+            },
+            "docSer": {
+              "caption": "Серия документа",
+              "required": false,
+              "readonly": true
+            },
+            "docNum": {
+              "caption": "Номер документа",
+              "required": false,
+              "readonly": true
+            },
+            "docDate": {
+              "caption": "Дата выдачи документа",
+              "required": false,
+              "readonly": true,
+              "type": 120
+            }
+          },
+          "propertyMap": {
+            "applicant@pass-back-ru": {
+              "filter": "user",
+              "properties": {
+                "applicant": "guid",
+                "fio": "fio",
+                "birthDate": "birthDate",
+                "type": "type",
+                "docSer": "docSer",
+                "docNum": "docNum",
+                "docDate": "docDate"
+              }
+            }
+          }
+        }
+      },
+      "accounts": {
+        "options": {
+          "plugins": {
+            "customProfile": "ion://customProfile"
+          }
+        }
       }
     },
     "jobs": {}

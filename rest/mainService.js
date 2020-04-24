@@ -1,6 +1,9 @@
 const Service = require('modules/rest/lib/interfaces/Service');
 const errors = require('core/errors/front-end');
 const IonError = require('core/IonError');
+const F = require('core/FunctionCodes');
+const normalize = require('core/util/normalize');
+const moment = require('moment');
 
 function mainService(options) {
   this._route = function(router) {
@@ -29,20 +32,36 @@ function mainService(options) {
     });
 
     this.addHandler(router, '/profile', 'GET', (req) => {
-      //GET метод получения данных профиля пользователя (данные из applicant)
       let u = options.auth.getUser(req);
-      //Также должны возвращаться все ассоциированные с пользователем роли безопасности.
       return Promise.resolve({
+        properties: u.properties(),
         coactors: u.coactors()
       });
     });
 
     this.addHandler(router, '/check', 'POST', (req) => {
-      //POST метод проверки существования заявителя. Принимает на вход идентификационные данные заявителя -
-      //либо ФИО + дата рождения, либо тип документа, серия, номер.
-      //При отсутствии applicant с такими данными возвращает статус 200, при наличии - статус 409.
-      //Токен сиситемы
-      return Promise.resolve();
+      let filter;
+      if (req.body.type && req.body.docSer && req.body.docNum) {
+        filter = [
+          {[F.EQUAL]: ['$type', req.body.type]},
+          {[F.EQUAL]: ['$docSer', req.body.docSer]},
+          {[F.EQUAL]: ['$docNum', req.body.docNum]}
+        ];
+      } else if (req.body.fio && req.body.birthDate) {
+        filter = [
+          {[F.EQUAL]: ['$fio', req.body.fio]},
+          {[F.EQUAL]: ['$birthDate', moment(req.body.birthDate).toDate()]}
+        ];
+      } else {
+        return Promise.reject(new IonError(422, {}, {message: 'Incomplete check conditions'}));
+      }
+      return options.dataRepo.getList('applicant@pass-back-ru', {filter: {[F.AND]: filter}})
+        .then((list) => {
+          if (!list || !list.length) {
+            return;
+          }
+          throw new IonError(409);
+        });
     });
 
     this.addHandler(router, '/apply', 'POST', (req) => {
@@ -61,8 +80,12 @@ function mainService(options) {
     });
 
     this.addHandler(router, '/passports', 'GET', (req) => {
-      //Возвращает список пропусков (passport) пользователя.
-      return Promise.resolve();
+      const u = options.auth.getUser(req);
+      const opts = {
+        filter: {[F.EQUAL]: ['$applicant', u.properties().applicant]}
+      };
+      return options.dataRepo.getList('pass@pass-back-ru', opts)
+        .then(list => normalize(list));
     });
   };
 }
