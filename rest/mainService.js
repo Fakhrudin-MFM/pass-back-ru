@@ -66,26 +66,46 @@ function mainService(options) {
 
     this.addHandler(router, '/apply', 'POST', (req) => {
       const u = options.auth.getUser(req);
-      const data = {
-        fio: req.body.fio,
-        birthDate: req.body.birthDate,
-        type: req.body.type,
-        docSer: req.body.docSer,
-        docNum: req.body.docNum,
-        docDate: req.body.docDate,
-        user: u.id()
-      };
-      return options.dataRepo.createItem('applicant@pass-back-ru', data)
+      const user = u.id();
+      const data = {user};
+      ['fio', 'birthDate', 'type', 'docSer', 'docNum', 'docDate'].forEach((nm) => {
+        if (req.body[nm]) {
+          data[nm] = req.body[nm];
+        }
+      });
+      return options.dataRepo.getList('applicant@pass-back-ru', {filter: {[F.EQUAL]: ['$user', user]}})
+        .then((applicants) => {
+          if (applicants && applicants[0]) {
+            return options.dataRepo.saveItem('applicant@pass-back-ru', applicants[0].getItemId(), data);
+          }
+          return options.dataRepo.createItem('applicant@pass-back-ru', data);
+        })
         .then(applicant => !!applicant);
     });
 
     this.addHandler(router, '/passports', 'GET', (req) => {
       const u = options.auth.getUser(req);
       const opts = {
-        filter: {[F.EQUAL]: ['$applicant', u.properties().applicant]}
+        filter: {[F.EQUAL]: ['$applicant', u.properties().applicant]},
+        forceEnrichment: [['applicant'],['target']]
       };
       return options.dataRepo.getList('pass@pass-back-ru', opts)
         .then(list => normalize(list));
+    });
+
+    this.addHandler(router, '/passport/:id', 'GET', (req) => {
+      const u = options.auth.getUser(req);
+      const opts = {
+        filter: {[F.EQUAL]: ['$applicant', u.properties().applicant]},
+        forceEnrichment: [['applicant'],['target']]
+      };
+      return options.dataRepo.getItem('pass@pass-back-ru', req.params.id, opts)
+        .then((pass) => {
+          if (!pass) {
+            return null;
+          }
+          return normalize(pass);
+        });
     });
   };
 }
